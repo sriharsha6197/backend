@@ -1,1 +1,3 @@
-this repo is related to backend code of the app
+this repo is related to backend code of the app 
+
+it will be run automatically by the jenkins pipeline if any new changes comes into picture
