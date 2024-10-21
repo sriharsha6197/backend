@@ -4,6 +4,7 @@ pipeline {
         stage('download dependencies'){
             steps{
                 echo "download dependencies"
+                sh 'sudo npm install'
             }
         }
         stage('Code test'){
