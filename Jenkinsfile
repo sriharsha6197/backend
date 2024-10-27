@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'terraform'}
     stages{
-        stage('download dependenciees'){
+        stage('download dependencies'){
             steps{
                 echo "download dependenciees"
                 sh 'npm install'
