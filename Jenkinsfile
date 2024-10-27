@@ -15,7 +15,7 @@ pipeline {
         stage('Code quality checks'){
             steps{
                 echo "Code quality checks"
-                sh 'sonar-scanner -Dsonar.projectKey=backend -Dsonar.host.url=http://172.31.17.88:9000 -Dsonar.login=admin -Dsonar.password=harsha123 -Dsonar.qualitygate.wait=false'
+                sh 'sonar-scanner -Dsonar.projectKey=backend -Dsonar.host.url=http://172.31.17.88:9000 -Dsonar.login=admin -Dsonar.password=harsha123 -Dsonar.qualitygate.wait=true'
             }
         }
         stage('Code deploy'){
