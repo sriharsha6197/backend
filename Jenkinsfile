@@ -1,6 +1,6 @@
 pipeline {
     agent { label 'terraform'}
-    stages{
+    stages {
         stage('download dependencies'){
             steps {
                 echo "download dependenciees"
