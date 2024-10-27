@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Code compile'){
             when {
-              allof {
+              allOf {
                 expression { env.TAG_NAME != env.BRANCH_NAME}
                 branch 'main'
               }
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('code unit tests'){
             when {
-              allof {
+              allOf {
                 expression { env.TAG_NAME != env.BRANCH_NAME}
                 branch 'main'
               }
@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Code quality checks'){
             when {
-              allof {
+              allOf {
                 expression { env.TAG_NAME != env.BRANCH_NAME}
               }
             }
