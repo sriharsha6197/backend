@@ -2,6 +2,11 @@ pipeline {
     agent { label 'terraform'}
     stages{
         stage('download dependencies'){
+            when{
+                allof {
+                    branch 'main'
+                }
+            }
             steps{
                 echo "download dependenciees"
                 sh 'npm install'
@@ -19,6 +24,9 @@ pipeline {
             }
         }
         stage('Code deploy'){
+            when{
+                expression{ env.TAG_NAME ==~ ".*"}
+            }
             input{
                 message "Should we continue?"
             }
