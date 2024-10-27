@@ -2,53 +2,53 @@ pipeline {
     agent { label 'terraform'}
     stages{
         stage('download dependencies'){
-            steps{
+            steps {
                 echo "download dependenciees"
                 sh 'npm install'
                 sh 'env'
             }
         }
         stage('Code compile'){
-            when{
-                allof {
-                    expression { env.TAG_NAME != env.BRANCH_NAME}
-                    branch 'main'
-                }
+            when {
+              allof {
+                expression { env.TAG_NAME != env.BRANCH_NAME}
+                branch 'main'
+              }
             }
-            steps{
+            steps {
                 echo "Code compile"
             }
         }
         stage('code unit tests'){
-            when{
-                allof {
-                    expression { env.TAG_NAME != env.BRANCH_NAME}
-                    branch 'main'
-                }
+            when {
+              allof {
+                expression { env.TAG_NAME != env.BRANCH_NAME}
+                branch 'main'
+              }
             }
-            steps{
+            steps {
                 echo "unit tests"
             }
         }
         stage('Code quality checks'){
-            when{
-                allof {
-                    expression { env.TAG_NAME != env.BRANCH_NAME}
-                }
+            when {
+              allof {
+                expression { env.TAG_NAME != env.BRANCH_NAME}
+              }
             }
-            steps{
+            steps {
                 echo "Code quality checks"
                 sh 'sonar-scanner -Dsonar.projectKey=backend -Dsonar.host.url=http://172.31.17.88:9000 -Dsonar.login=admin -Dsonar.password=harsha123 -Dsonar.qualitygate.wait=true'
             }
         }
         stage('Code deploy'){
-            when{
+            when {
                 expression { env.TAG_NAME ==~ ".*"}
             }
-            input{
+            input {
                 message "Should we continue?"
             }
-            steps{
+            steps {
                 echo "Code deploy"
             }
         }
