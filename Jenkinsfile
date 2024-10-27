@@ -11,7 +11,7 @@ pipeline {
         stage('Code compile'){
             when {
               allOf {
-                expression { env.TAG_NAME != env.BRANCH_NAME}
+                expression { env.TAG_NAME != env.GIT_BRANCH}
                 branch 'main'
               }
             }
@@ -22,7 +22,7 @@ pipeline {
         stage('code unit tests'){
             when {
               allOf {
-                expression { env.TAG_NAME != env.BRANCH_NAME}
+                expression { env.TAG_NAME != env.GIT_BRANCH}
                 branch 'main'
               }
             }
@@ -33,7 +33,7 @@ pipeline {
         stage('Code quality checks'){
             when {
               allOf {
-                expression { env.TAG_NAME != env.BRANCH_NAME}
+                expression { env.TAG_NAME != env.GIT_BRANCH}
               }
             }
             steps {
