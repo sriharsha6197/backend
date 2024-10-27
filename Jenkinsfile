@@ -5,6 +5,7 @@ pipeline {
             steps{
                 echo "download dependenciees"
                 sh 'npm install'
+                sh 'env'
             }
         }
         stage('Code compile'){
@@ -33,11 +34,13 @@ pipeline {
             }
         }
         stage('Code deploy'){
+            when{
+                expression { env.TAG_NAME ==~ ".*"}
+            }
             input{
                 message "Should we continue?"
             }
             steps{
-                sh 'env'
                 echo "Code deploy"
             }
         }
