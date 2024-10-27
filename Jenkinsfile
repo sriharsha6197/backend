@@ -37,6 +37,7 @@ pipeline {
                 message "Should we continue?"
             }
             steps{
+                sh 'env'
                 echo "Code deploy"
             }
         }
